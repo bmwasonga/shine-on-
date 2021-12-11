@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function ReadCsv() {
   const [csvFile, setCsvFile] = useState();
   const [csvArray, setCsvArray] = useState();
 
-  console.log(csvArray);
+  // console.log(csvArray);
 
   const processFile = (str, delim = ',') => {
-    const headers = str.slice(0, str.indexOf('\n')).split(delim);
+    const headers = str
+      .slice(0, str.indexOf('\n'))
+      .replace(/ /g, '')
+      .split(delim);
     const rows = str.slice(str.indexOf('\n') + 1).split('\n');
 
     const newArray = rows.map((row) => {
@@ -43,7 +46,13 @@ export default function ReadCsv() {
           setCsvFile(e.target.files[0]);
         }}
       />
+      <input
+        type="number"
+        onChange={console.log('i have changed')}
+        placeholder="number to display"
+      />
 
+      <br />
       <button
         onClick={(e) => {
           e.preventDefault();
