@@ -41,3 +41,26 @@
     transform: rotate(360deg);
   }
 }
+
+.button {
+  margin-top: 16px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  font-weight: 400 !important;
+  background-color: rgb(36, 32, 33);
+  color: #fff;
+  padding: 16px 30px;
+  text-align: center;
+  display: inline-block !important;
+  text-decoration: none;
+  border: 0px;
+  width: max-content;
+  cursor: pointer;
+  transition: all 0.3s 0s ease-in-out;
+}
+
+.button:hover {
+  transform: scale(1.04, 1);
+  background-color: rgb(216, 10, 27);
+  text-decoration: none;
+}
