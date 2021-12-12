@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export default function ReadCsv() {
   const [csvFile, setCsvFile] = useState();
   const [csvArray, setCsvArray] = useState();
   const [inputValue, setInputValue] = useState(1);
+
+  const [sortableval, setSortable] = useState();
 
   // console.log(csvArray);
 
@@ -53,6 +55,8 @@ export default function ReadCsv() {
     });
 
     console.log('the sortable is', sortable);
+
+    setSortable(sortable);
   };
 
   const submit = () => {
@@ -68,31 +72,45 @@ export default function ReadCsv() {
   };
 
   return (
-    <form>
-      <input
-        type="file"
-        accept=".csv"
-        onChange={(e) => {
-          setCsvFile(e.target.files[0]);
-        }}
-      />
-      <input
-        type="number"
-        onChange={onChangeHandler}
-        value={inputValue}
-        placeholder="number to display"
-      />
+    <div className="container">
+      <form>
+        <input
+          type="file"
+          accept=".csv"
+          onChange={(e) => {
+            setCsvFile(e.target.files[0]);
+          }}
+        />
+        <input
+          type="number"
+          onChange={onChangeHandler}
+          value={inputValue}
+          placeholder="number to display"
+        />
+
+        <br />
+        <button
+          className="button"
+          onClick={(e) => {
+            e.preventDefault();
+            submit();
+          }}
+        >
+          Submit{' '}
+        </button>
+      </form>
 
       <br />
-      <button
-        className="button"
-        onClick={(e) => {
-          e.preventDefault();
-          submit();
-        }}
-      >
-        Submit{' '}
-      </button>
-    </form>
+
+      <div className="">
+        {sortableval?.map((item, index) => {
+          return (
+            <div key={index}>
+              {index + 1}:{item[0]}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
