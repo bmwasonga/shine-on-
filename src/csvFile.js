@@ -36,15 +36,23 @@ export default function ReadCsv() {
     console.log('the result is', result);
 
     // this is a counter of how mant times the customerID is repeated
-    var map = result.reduce(
-      function (obj, b) {
-        obj[b] = ++obj[b] || 1;
-        return obj;
-      },
-      [{}]
-    );
+    var map = result.reduce(function (obj, b) {
+      obj[b] = ++obj[b] || 1;
+      return obj;
+    }, {});
 
     console.log('the map is', map);
+
+    var sortable = [];
+    for (var x in map) {
+      sortable.push([x, map[x]]);
+    }
+
+    sortable.sort(function (a, b) {
+      return b[1] - a[1];
+    });
+
+    console.log('the sortable is', sortable);
   };
 
   const submit = () => {
